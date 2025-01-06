@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
+import 'views/add_city_view.dart';
+import 'views/cities_list_view.dart';
+import 'views/city_details_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
@@ -14,13 +15,17 @@ class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
     required this.settingsController,
+    required this.weatherService,
   });
 
   final SettingsController settingsController;
-  
+  final WeatherService weatherService;
 
   @override
   Widget build(BuildContext context) {
+    // Test for the API
+    weatherService.fetchWeather('Paris');
+
     // Glue the SettingsController to the MaterialApp.
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
@@ -72,8 +77,10 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
+                  case CityDetailsView.routeName:
+                    return const CityDetailsView();
+                  case AddCityView.routeName:
+                    return const AddCityView();
                   case SampleItemListView.routeName:
                   default:
                     return const SampleItemListView();

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 /// Displays detailed information about a SampleItem.
-class SampleItemDetailsView extends StatelessWidget {
-  const SampleItemDetailsView({super.key});
+class AddCityView extends StatelessWidget {
+  const AddCityView({super.key});
 
-  static const routeName = '/sample_item';
+  static const routeName = '/add_city';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Item Details'),
+        title: const Text('Add a city'),
       ),
       body: const Center(
-        child: Text('More Information Here'),
+        child: Text('Page created to add a city'),
       ),
     );
   }
