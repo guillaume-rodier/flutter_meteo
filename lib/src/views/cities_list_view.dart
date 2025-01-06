@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../settings/settings_view.dart';
-import '../models/sample_item.dart';
 import 'city_details_view.dart';
 import 'add_city_view.dart';
 
@@ -12,12 +11,9 @@ import '../models/city_notifier.dart';
 class CitiesListView extends ConsumerWidget {
   const CitiesListView({
     super.key,
-    this.items = const [SampleItem(1), SampleItem(2), SampleItem(3)],
   });
 
   static const routeName = '/';
-
-  final List<SampleItem> items;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

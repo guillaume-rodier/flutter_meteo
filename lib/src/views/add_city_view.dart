@@ -11,8 +11,6 @@ class AddCityView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,  WidgetRef ref) {
-    final cities = ref.watch(cityProvider);
-
     String citiesName = '';
 
     return Scaffold(
@@ -39,9 +37,8 @@ class AddCityView extends ConsumerWidget {
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: () {
-                print(citiesName);
-
                 ref.read(cityProvider.notifier).addCity(citiesName);
+                Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
