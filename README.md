@@ -28,10 +28,14 @@ the `lib/src/localization` directory.
 To support additional languages, please visit the tutorial on
 [Internationalizing Flutter apps](https://flutter.dev/to/internationalization).
 
-# Environment variables
+## Environment variables
 
 Create a .env file to set your API keys and other secrets variables.
-This .env file should be in .\assets\ folder.
+
+This .env file should be in `assets` directory.
+
 To use the API from https://openweathermap.org/ website, you should have
-an account and use an API key. You should save it in your .env file with
+an account and use an API key.
+
+You should save this api key in your `.env` file with
 WEATHER_SERVICE_KEY variable.
