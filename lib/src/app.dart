@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'views/add_city_view.dart';
 import 'views/cities_list_view.dart';
 import 'views/city_details_view.dart';
+
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
@@ -81,9 +82,9 @@ class MyApp extends StatelessWidget {
                     return const CityDetailsView();
                   case AddCityView.routeName:
                     return const AddCityView();
-                  case SampleItemListView.routeName:
+                  case CitiesListView.routeName:
                   default:
-                    return const SampleItemListView();
+                    return const CitiesListView();
                 }
               },
             );

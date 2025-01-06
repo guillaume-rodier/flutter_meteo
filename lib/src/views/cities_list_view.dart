@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../settings/settings_view.dart';
 import '../models/sample_item.dart';
 import 'city_details_view.dart';
 import 'add_city_view.dart';
 
+import '../models/city_notifier.dart';
+
 /// Displays a list of SampleItems.
-class SampleItemListView extends StatelessWidget {
-  const SampleItemListView({
+class CitiesListView extends ConsumerWidget {
+  const CitiesListView({
     super.key,
     this.items = const [SampleItem(1), SampleItem(2), SampleItem(3)],
   });
@@ -17,7 +20,9 @@ class SampleItemListView extends StatelessWidget {
   final List<SampleItem> items;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,  WidgetRef ref) {
+    final cities = ref.watch(cityProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your cities list'),
@@ -44,28 +49,51 @@ class SampleItemListView extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (BuildContext context, int index) {
-                final item = items[index];
-
-                return ListTile(
-                  title: Text('Test ${item.id}'),
-                  leading: const CircleAvatar(
-                    // Display the Flutter Logo image asset.
-                    foregroundImage: AssetImage('assets/images/flutter_logo.png'),
+            child: cities.isEmpty
+              ? Center(
+                  child: Container(
+                    margin: EdgeInsets.all(20.0),  // Applies a margin around the Column
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,  // Center vertically
+                      crossAxisAlignment: CrossAxisAlignment.center,  // Center horizontally
+                      children: <Widget>[
+                        Text(
+                          'No cities available.',
+                          style: TextStyle(fontSize: 18),
+                          textAlign: TextAlign.center
+                        ),
+                        SizedBox(height: 10), // Spacing between lines
+                        Text(
+                          'Please add one by clicking the button at the bottom of the page.',
+                          style: TextStyle(fontSize: 18),
+                          textAlign: TextAlign.center
+                        ),
+                      ],
+                    ),
                   ),
-                  onTap: () {
-                    // Navigate to the details page. If the user leaves and returns to
-                    // the app after it has been killed while running in the
-                    // background, the navigation stack is restored.
-                    Navigator.restorablePushNamed(
-                      context,
-                      CityDetailsView.routeName,
-                    );
-                  }
-                );
-              },
+                )
+              : ListView.builder(
+                itemCount: cities.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final city = cities[index];
+
+                  return ListTile(
+                    title: Text(city.name),
+                    leading: const CircleAvatar(
+                      // Display the Flutter Logo image asset.
+                      foregroundImage: AssetImage('assets/images/flutter_logo.png'),
+                    ),
+                    onTap: () {
+                      // Navigate to the details page. If the user leaves and returns to
+                      // the app after it has been killed while running in the
+                      // background, the navigation stack is restored.
+                      Navigator.restorablePushNamed(
+                        context,
+                        CityDetailsView.routeName,
+                      );
+                    }
+                  );
+                },
             ),
           ),
           Padding(
