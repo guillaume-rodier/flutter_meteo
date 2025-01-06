@@ -20,7 +20,7 @@ class CitiesListView extends ConsumerWidget {
   final List<SampleItem> items;
 
   @override
-  Widget build(BuildContext context,  WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final cities = ref.watch(cityProvider);
 
     return Scaffold(

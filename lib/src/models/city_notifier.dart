@@ -2,6 +2,7 @@ import 'package:flutter_meteo/src/models/city_item.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CityNotifier extends StateNotifier<List<City>> {
+  // CityNotifier() : super([City(id: DateTime.now().toString(), name: 'Paris'), City(id: DateTime.now().toString(), name: 'Londres')]);
   CityNotifier() : super([]);
 
   // Add a city
