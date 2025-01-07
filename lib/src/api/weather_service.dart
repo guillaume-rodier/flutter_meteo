@@ -14,7 +14,7 @@ class WeatherService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('Erreur lors de la récupération des données météo');
+      throw Exception('Error retrieving weather data');
     }
   }
 }
