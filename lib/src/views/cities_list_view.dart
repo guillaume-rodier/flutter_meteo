@@ -74,14 +74,20 @@ class CitiesListView extends ConsumerWidget {
                   final city = cities[index];
 
                   return ListTile(
-                    title: Text(city.name),
+                    title: Text(city.name, style: TextStyle(fontSize: 18)),
                     onTap: () {
                       Navigator.restorablePushNamed(
                         context,
                         CityDetailsView.routeName,
                         arguments: city.toJson(),
                       );
-                    }
+                    },
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete, size: 18),
+                      onPressed: () {
+                        ref.read(cityProvider.notifier).removeCity(city.id);
+                      },
+                    ),
                   );
                 },
             ),
