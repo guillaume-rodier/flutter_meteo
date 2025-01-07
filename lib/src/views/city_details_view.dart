@@ -7,26 +7,37 @@ class CityDetailsView extends StatelessWidget {
   const CityDetailsView({
     super.key,
     required this.city,
-    required this.weather,
+    required this.snapshot,
   });
 
   static const routeName = '/city_details';
   
   final City city;
-  final dynamic weather;
+  final dynamic snapshot;
+
+  dynamic getWeatherViewBody() {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return Center(child: CircularProgressIndicator()); // Show a loader while waiting;
+    } else if (snapshot.hasError) {
+      return Center(child: Text('Erreur: ${snapshot.error}'));
+    } else if (snapshot.hasData) {
+      // If the call succeeds, pass the data to the view
+      return Center(
+        child: Text('More informations from ${city.name} here'),
+      );
+    } else {
+      return Center(child: Text('Aucune donnée disponible'));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    print('---- Weather ----');
-    print(weather);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('${city.name} Details'),
       ),
-      body: Center(
-        child: Text('More informations from ${city.name} here'),
-      ),
+      body: getWeatherViewBody(),
     );
   }
 }
+ 

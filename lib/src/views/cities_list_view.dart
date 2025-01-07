@@ -75,10 +75,6 @@ class CitiesListView extends ConsumerWidget {
 
                   return ListTile(
                     title: Text(city.name),
-                    leading: const CircleAvatar(
-                      // Display the Flutter Logo image asset.
-                      foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-                    ),
                     onTap: () {
                       Navigator.restorablePushNamed(
                         context,

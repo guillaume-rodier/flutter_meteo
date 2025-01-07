@@ -83,31 +83,7 @@ class MyApp extends StatelessWidget {
                       return FutureBuilder(
                         future: weatherService.fetchWeather(newCity.name),  // Asynchronous call to get weather data
                         builder: (BuildContext context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return Scaffold(
-                              appBar: AppBar(
-                                title: Text('${newCity.name} Details'),
-                              ),
-                              body: Center(child: CircularProgressIndicator()), // Show a loader while waiting
-                            );
-                          } else if (snapshot.hasError) {
-                            return Scaffold(
-                              appBar: AppBar(
-                                title: Text('${newCity.name} Details'),
-                              ),
-                              body: Center(child: Text('Erreur: ${snapshot.error}')),
-                            );
-                          } else if (snapshot.hasData) {
-                            // If the call succeeds, pass the data to the view
-                            return CityDetailsView(city: newCity, weather: snapshot.data!);
-                          } else {
-                            return Scaffold(
-                              appBar: AppBar(
-                                title: Text('${newCity.name} Details'),
-                              ),
-                              body: Center(child: Text('Aucune donnée disponible')),
-                            );
-                          }
+                          return CityDetailsView(city: newCity, snapshot: snapshot);
                         },
                       );
                     } else {
