@@ -80,12 +80,10 @@ class CitiesListView extends ConsumerWidget {
                       foregroundImage: AssetImage('assets/images/flutter_logo.png'),
                     ),
                     onTap: () {
-                      // Navigate to the details page. If the user leaves and returns to
-                      // the app after it has been killed while running in the
-                      // background, the navigation stack is restored.
                       Navigator.restorablePushNamed(
                         context,
                         CityDetailsView.routeName,
+                        arguments: city.toJson(),
                       );
                     }
                   );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_meteo/src/models/city_item.dart';
 
 import 'views/add_city_view.dart';
 import 'views/cities_list_view.dart';
@@ -79,7 +80,12 @@ class MyApp extends StatelessWidget {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   case CityDetailsView.routeName:
-                    return const CityDetailsView();
+                    if (routeSettings.arguments != null) {
+                      City newCity = City.fromJson(routeSettings.arguments as Map<String, dynamic>);
+                      return CityDetailsView(city: newCity);
+                    } else {
+                      return const CitiesListView();
+                    }
                   case AddCityView.routeName:
                     return const AddCityView();
                   case CitiesListView.routeName:
