@@ -30,12 +30,13 @@ To support additional languages, please visit the tutorial on
 
 ## Environment variables
 
-Create a .env file to set your API keys and other secrets variables.
+Create a `.env` file to set your API keys and other secrets variables.
 
-This .env file should be in `assets` directory.
+This `.env` file should be in `assets` directory.
 
-To use the API from https://openweathermap.org/ website, you should have
-an account and use an API key.
+To use the API from [Open Weather Map](https://openweathermap.org/) website, you should have
+an account and use an API key from this website.
 
-You should save this api key in your `.env` file with
-WEATHER_SERVICE_KEY variable.
+This is the list of variables in `.env` file:
+- `WEATHER_SERVICE_KEY`: it contain your API key from [Open Weather Map](https://openweathermap.org/)
+website.
